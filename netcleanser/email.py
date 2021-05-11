@@ -1,14 +1,15 @@
 import re
 
-def _automatic_correctionmodify(email):
+def _automatic_correctionmodify(email: str):
     return email.replace("＠", "@")
 
 class Email:
-    def __init__(self, value):
-        self.value = _automatic_correctionmodify(value)
+    def __init__(self, value: str):
+        self.value = None
         self.local_part = None
         self.domain = None
         try:
+            self.value = _automatic_correctionmodify(value)
             self.local_part, self.domain = self.value.split('@')
             self.is_valid = True
         except:
