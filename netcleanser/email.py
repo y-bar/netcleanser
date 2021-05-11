@@ -20,7 +20,7 @@ class Email:
         return self.value
 
     def __repr__(self):
-        return self.__str__()
+        return f"Email(value={self.value})"
 
     def __eq__(self, other):
         if not isinstance(other, Email):
@@ -29,6 +29,7 @@ class Email:
     
     def __hash__(self):
         return hash(self.value)
+
     @staticmethod
     def build(local_part: str = "dummy", domain: str = "dummy.com"):
         return Email(f"{local_part}@{domain}")
