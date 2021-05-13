@@ -2,8 +2,16 @@
 name = "netcleanser"
 version = "0.1.0"
 description = "The library makes parsing and manipulation of URL🌐 and Email address📧 easy."
+readme = "README.md"
 authors = ["Shinichi Takayanagi <shinichi.takayanagi@gmail.com>", "Nakamura Michihiro <nakamichiworks@gmail.com>"]
+homepage = "https://github.com/y-bar/netcleanser"
+repository = "https://github.com/y-bar/netcleanser"
+documentation = "https://github.com/y-bar/netcleanser"
 license = "MIT"
+classifiers = [
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Utilities",
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
