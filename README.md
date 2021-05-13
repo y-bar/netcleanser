@@ -40,11 +40,11 @@ This `Email` class is `settable` and `dictable`
 >>> email2 = Email("nakamichiworks@gmail.com")
 >>> {email, email, email, email2, email2}
 {Email(value='nakamichiworks@gmail.com)', Email(value='shinichi.takayanagi@gmail.com)'}
->>> 
 ```
 
 `Email.build()` allows you to create dummy email address specifing the only part of `local_part` or `domain`
-```pyhon
+
+```python
 >>> Email.build(local_part = "hoge")
 Email(value='hoge@dummy.com)'
 >>> Email.build(domain = "hoge.com")
