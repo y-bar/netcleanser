@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "netcleanser"
+version = "0.1.0"
+description = "The library makes parsing and manipulation of URL🌐 and Email address📧 easy."
+authors = ["Shinichi Takayanagi <shinichi.takayanagi@gmail.com>", "Nakamura Michihiro <nakamichiworks@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
