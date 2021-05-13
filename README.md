@@ -1,6 +1,6 @@
 # netcleanser
 
-A simple library to cleaning up url and email address.
+The library makes parsing and manipulation of URL🌐 and Email address📧 easy.
 
 ![ci](https://github.com/y-bar/netcleanser/workflows/ci/badge.svg?branch=master)
 [![license](https://img.shields.io/github/license/y-bar/netcleanser.svg)](https://github.com/y-bar/netcleanser/blob/master/LICENSE)
