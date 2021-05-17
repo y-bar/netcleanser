@@ -6,7 +6,7 @@ from typing import Optional, Final
 DOMAIN_NAME_REGEX: Final[str] = re.compile(r'(([\da-zA-Z])([_\w-]{,62})\.){,127}(([\da-zA-Z])[_\w-]{,61})?([\da-zA-Z]\.((xn\-\-[a-zA-Z\d]+)|([a-zA-Z\d]{2,})))', re.IGNORECASE)
 
 def _looks_domain(x: str) -> bool:
-    domain_name = x.lower().strip().encode('ascii')
+    domain_name = x.lower().strip()
     return True if re.match(DOMAIN_NAME_REGEX, x) else False
 
 def _automatic_correction(email: str) -> str:
