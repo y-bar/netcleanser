@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "netcleanser"
-version = "0.1.1"
+version = "0.1.2"
 description = "The library makes parsing and manipulation of URL🌐 and Email address📧 easy."
 readme = "README.md"
 authors = [
