@@ -28,5 +28,5 @@ class Url():
         except ValueError:
             return False
 
-    def as_string(self):
+    def as_string(self) -> str:
         return self._purl.as_string()

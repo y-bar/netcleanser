@@ -64,5 +64,5 @@ class Email:
         return self._local_part
 
     @staticmethod
-    def build(local_part: str = "dummy", domain: str = "dummy.com"):
+    def build(local_part: str = "dummy", domain: str = "dummy.com") -> 'Email':
         return Email(f"{local_part}@{domain}")
