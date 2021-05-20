@@ -49,4 +49,5 @@ def test_email_should_be_settable():
     {Email("hoge@gmail.com"), Email("xxx@yahooo")}
 
 def test_email_should_be_dictable():
-    {Email("hoge@gmail.com"): 123, Email("xxx@yahooo"): 456}
+    d = {Email("hoge@gmail.com"): 123, Email("xxx@yahooo"): 456}
+    assert d[Email("hoge@gmail.com")] == 123

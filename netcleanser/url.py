@@ -5,9 +5,25 @@ class Url():
     def __init__(self, url_str=None, host=None, username=None, password=None,scheme=None, port=None, path=None, query=None, fragment=None):
         self._purl = purl.URL(url_str, host, username, password, scheme, port, path, query, fragment)            
         
-    # properties(e.g. netloc, scheme, host, domain, path, query)
     def __getattr__(self, name):
-        return self._purl.__getattribute__(name)()
+        if name in ["netloc", "scheme", "host", "domain", "path", "query"]:
+            return getattr(self._purl, name)()
+        else:
+            raise AttributeError(f"'Url' object has no attribute '{name}'")
+    
+    def __repr__(self):
+        return self._purl.__repr__()
+
+    def __str__(self):
+        return self._purl.__str__()
+
+    def __eq__(self, other):
+        if not isinstance(other, Url):
+            return False
+        return self._purl.__eq__(other._purl)
+
+    def __hash__(self):
+        return self._purl.__hash__()
 
     @property
     def is_accessible(self, timeout = (1.0, 3.0)) -> bool:

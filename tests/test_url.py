@@ -13,19 +13,21 @@ def test_valid_url():
     assert url.is_valid == True
     assert url.is_accessible == True
     assert url.as_string() == url_string
+    assert str(url) == url_string
+    assert url == Url(url_string)
+    assert url != "aaaa"
+    hash(url) 
+
 
 def test_invalid_url():
-    url_string = 'https://goooooooooooogle.com'
-    url = Url(url_string)
-    assert url.scheme == 'https'
-    assert url.host == 'goooooooooooogle.com'
-    assert url.domain == 'goooooooooooogle.com'
-    assert url.is_valid == True
+    url = Url('https://goooooooooooogle.com')
     assert url.is_accessible == False
-    assert url.as_string() == url_string
+
 
 def test_url_should_be_settable():
     {Url("https://www.google.com"), Url("https://www.google.co.jp")}
 
+
 def test_url_should_be_dictable():
-    {Url("https://www.google.com"): 123, Url("https://www.google.co.jp"): 456}
+    d = {Url("https://www.google.com"): 123, Url("https://www.google.co.jp"): 456}
+    assert d[Url("https://www.google.co.jp")] == 456
