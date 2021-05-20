@@ -12,7 +12,7 @@ def test_valid_url():
     assert url.query == 'q=testing'
     assert url.is_valid == True
     assert url.is_accessible == True
-    assert url.as_string() == url_string
+    assert url.value == url_string
     assert str(url) == url_string
     assert url == Url(url_string)
     assert url != "aaaa"

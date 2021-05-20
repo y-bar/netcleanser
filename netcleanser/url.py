@@ -26,12 +26,16 @@ class Url():
         return self._purl.__hash__()
 
     @property
+    def value(self) -> str:
+        return self._purl.as_string()
+
+    @property
     def is_accessible(self, timeout = (1.0, 3.0)) -> bool:
         try:
             headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36"
             }
-            r = requests.get(self.as_string(), headers=headers, timeout=timeout)
+            r = requests.get(self.value, headers=headers, timeout=timeout)
             r.raise_for_status()
         except Exception:
             return False
@@ -44,5 +48,3 @@ class Url():
         except ValueError:
             return False
 
-    def as_string(self) -> str:
-        return self._purl.as_string()

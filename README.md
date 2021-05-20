@@ -24,7 +24,7 @@ pip install netcleanser
 'gmail.com'
 >>> email.local_part
 'shinichi.takayanagi'
->>> email.is_valid()
+>>> email.is_valid
 True
 >>> email.value
 'shinichi.takayanagi@gmail.com'
@@ -73,7 +73,7 @@ Email(value='dummy@hoge.com)'
 True
 >>> url.is_accessible
 True
->>> url.as_string()
+>>> url.value
 'https://www.google.com/search?q=auhuhe'
 >>> str(url)
 'https://www.google.com/search?q=auhuhe'

@@ -4,7 +4,7 @@ from netcleanser import Email
 def test_email():
     for value in ["hoge.moge@gmail.com", "hoge.moge＠gmail.com"]:
         email = Email(value)
-        assert email.is_valid() == True
+        assert email.is_valid == True
         assert email.local_part == "hoge.moge"
         assert email.domain == "gmail.com"
         assert str(email) == email.value
@@ -13,7 +13,7 @@ def test_email():
 def test_empty_local_part():
     for value in ["gmail.com", "@gmail.com"]:
         email = Email(value)
-        assert email.is_valid() == True
+        assert email.is_valid == True
         assert email.local_part == ""
         assert email.domain == "gmail.com"
         assert str(email) == email.value
@@ -22,7 +22,7 @@ def test_empty_local_part():
 def test_internationalized_domain():
     for value in ["あうふへぇ@ほげほげ.com", "あうふへぇ＠ほげほげ.com"]:
         email = Email(value)
-        assert email.is_valid() == True
+        assert email.is_valid == True
         assert email.local_part == "あうふへぇ"
         assert email.domain == "ほげほげ.com"
         assert str(email) == email.value
@@ -31,7 +31,7 @@ def test_internationalized_domain():
 def test_email_is_invalid():
     for value in ["", "akdsjfkjh", None]:
         email = Email(value)
-        assert email.is_valid() == False
+        assert email.is_valid == False
         assert email.local_part is None
         assert email.domain is None
         assert email.value is None

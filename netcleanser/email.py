@@ -48,6 +48,7 @@ class Email:
     def __hash__(self) -> int:
         return hash(self._value)
 
+    @property
     def is_valid(self) -> bool:
         return (self._value is not None)
 
