@@ -3,7 +3,7 @@ from typing import Optional, Final
 
 # Thanks!
 # https://gist.github.com/neu5ron/66078f804f16f9bda828
-DOMAIN_NAME_REGEX: Final[str] = re.compile(r'(([\da-zA-Z])([_\w-]{,62})\.){,127}(([\da-zA-Z])[_\w-]{,61})?([\da-zA-Z]\.((xn\-\-[a-zA-Z\d]+)|([a-zA-Z\d]{2,})))', re.IGNORECASE)
+DOMAIN_NAME_REGEX: Final[re.Pattern] = re.compile(r'(([\da-zA-Z])([_\w-]{,62})\.){,127}(([\da-zA-Z])[_\w-]{,61})?([\da-zA-Z]\.((xn\-\-[a-zA-Z\d]+)|([a-zA-Z\d]{2,})))', re.IGNORECASE)
 
 def _looks_domain(x: str) -> bool:
     domain_name = x.lower().strip()
@@ -33,21 +33,22 @@ class Email:
         self._local_part = None
         self._domain = None
  
-    def __str__(self):
+    def __str__(self) -> str:
         return self._value
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         # The same format with dataclass ;)
         return f"Email(value='{self._value})'"
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if not isinstance(other, Email):
             return False
         return self._value == other._value
     
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self._value)
 
+    @property
     def is_valid(self) -> bool:
         return (self._value is not None)
 
@@ -64,5 +65,5 @@ class Email:
         return self._local_part
 
     @staticmethod
-    def build(local_part: str = "dummy", domain: str = "dummy.com"):
+    def build(local_part: str = "dummy", domain: str = "dummy.com") -> 'Email':
         return Email(f"{local_part}@{domain}")

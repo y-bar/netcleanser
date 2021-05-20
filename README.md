@@ -24,7 +24,7 @@ pip install netcleanser
 'gmail.com'
 >>> email.local_part
 'shinichi.takayanagi'
->>> email.is_valid()
+>>> email.is_valid
 True
 >>> email.value
 'shinichi.takayanagi@gmail.com'
@@ -49,4 +49,41 @@ This `Email` class is `settable` and `dictable`
 Email(value='hoge@dummy.com)'
 >>> Email.build(domain = "hoge.com")
 Email(value='dummy@hoge.com)'
+```
+
+### Url
+
+```python
+>>> from netcleanser import Url
+>>> url = Url('https://www.google.com/search?q=auhuhe')
+>>> assert url.scheme == 'https'
+>>> url.scheme
+'https'
+>>> url.host
+'www.google.com'
+>>> url.domain
+'www.google.com'
+>>> url.netloc
+'www.google.com'
+>>> url.path
+'/search'
+>>> url.query
+'q=auhuhe'
+>>> url.is_valid
+True
+>>> url.is_accessible
+True
+>>> url.value
+'https://www.google.com/search?q=auhuhe'
+>>> str(url)
+'https://www.google.com/search?q=auhuhe'
+```
+
+This `Url` class is `settable` and `dictable`
+```python
+>>> x = {url: 123}
+>>> x[Url('https://www.google.com/search?q=auhuhe')]
+123
+>>> {url, url, Url('https://google.com'), url}
+{_URLTuple(host='google.com', username=None, password=None, scheme='https', port=None, path='', query='', fragment=''), _URLTuple(host='www.google.com', username=None, password=None, scheme='https', port=None, path='/search', query='q=auhuhe', fragment='')}
 ```
