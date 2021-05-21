@@ -24,10 +24,11 @@ class Url:
             raise AttributeError(f"'Url' object has no attribute '{name}'")
     
     def __repr__(self):
-        return self._purl.__repr__()
+        p = self._purl
+        return f"Url(host='{p.host()}', username='{p.username()}', password='{p.password()}', scheme='{p.scheme()}', port='{p.port()}', path='{p.path()}', query='{p.query()}', fragment='{p.fragment()}')"
 
     def __str__(self):
-        return self._purl.__str__()
+        return self.value
 
     def __eq__(self, other):
         if not isinstance(other, Url):

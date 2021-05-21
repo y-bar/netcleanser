@@ -56,13 +56,14 @@ Email(value='dummy@hoge.com)'
 ```python
 >>> from netcleanser import Url
 >>> url = Url('https://www.google.com/search?q=auhuhe')
->>> assert url.scheme == 'https'
 >>> url.scheme
 'https'
 >>> url.host
 'www.google.com'
 >>> url.domain
 'www.google.com'
+>>> url.registered_domain
+'google.com'
 >>> url.netloc
 'www.google.com'
 >>> url.path
@@ -77,6 +78,12 @@ True
 'https://www.google.com/search?q=auhuhe'
 >>> str(url)
 'https://www.google.com/search?q=auhuhe'
+>>> url.contains_www
+True
+>>> url.remove_query()
+Url(host='www.google.com', username='None', password='None', scheme='https', port='None', path='/search', query='', fragment='')
+>>> url.remove_www()
+Url(host='google.com', username='None', password='None', scheme='https', port='None', path='/search', query='q=auhuhe', fragment='')
 ```
 
 This `Url` class is `settable` and `dictable`
@@ -85,5 +92,8 @@ This `Url` class is `settable` and `dictable`
 >>> x[Url('https://www.google.com/search?q=auhuhe')]
 123
 >>> {url, url, Url('https://google.com'), url}
-{_URLTuple(host='google.com', username=None, password=None, scheme='https', port=None, path='', query='', fragment=''), _URLTuple(host='www.google.com', username=None, password=None, scheme='https', port=None, path='/search', query='q=auhuhe', fragment='')}
+{Url(host='www.google.com', username='None', password='None', scheme='https', port='None', path='/search', query='q=auhuhe', fragment=''), Url(host='google.com', username='None', password='None', scheme='https', port='None', path='', query='', fragment='')}
 ```
+
+## Thanks
+`Url` class strongly depends on awesome [purl](https://github.com/codeinthehole/purl) package, thanks!
