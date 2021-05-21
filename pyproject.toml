@@ -22,6 +22,7 @@ include = [
 python = "^3.9"
 purl = "^1.6"
 requests = "^2.25.1"
+tldextract = "^3.1.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"

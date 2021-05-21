@@ -1,10 +1,22 @@
+import re
 import purl
+import copy
 import requests
+import tldextract
+from typing import Optional, Final
 
-class Url():
-    def __init__(self, url_str=None, host=None, username=None, password=None,scheme=None, port=None, path=None, query=None, fragment=None):
-        self._purl = purl.URL(url_str, host, username, password, scheme, port, path, query, fragment)            
-        
+# Regular expressions to remove "www.", "www1.", www123. etc."
+WWW: Final[re.Pattern] = re.compile(r"^www[0-9]*\.")
+# scheme e.g.: hoge://
+SCHEME: Final[re.Pattern] = re.compile(r"^[A-Za-z0-9+.\-]+://")
+
+class Url:
+    def __init__(self, url_string: Optional[str] = None, host=None, username=None, password=None,scheme=None, port=None, path=None, query=None, fragment=None):
+        # Add scheme enforcely if it is needed
+        if url_string is not None and not re.search(SCHEME, url_string):
+            url_string = f"http://{url_string}"
+        self._purl = purl.URL(url_string, host, username, password, scheme, port, path, query, fragment)            
+
     def __getattr__(self, name):
         if name in ["netloc", "scheme", "host", "domain", "path", "query"]:
             return getattr(self._purl, name)()
@@ -25,9 +37,38 @@ class Url():
     def __hash__(self):
         return self._purl.__hash__()
 
+
+    def add_www(self) -> "Url":
+        if self.contains_www:
+            # Just retun the copy
+            return Url(self.value)   
+        return _mutate(self, host = "www." + self.host)
+
+    def remove_www(self) -> "Url":
+        host = re.sub(WWW, "", self.host)
+        return _mutate(self, host = host)
+
+    def remove_query(self, key=None, value=None) -> "Url":
+        if key is not None:
+            return Url(self._purl.remove_query_param(key, value).as_string())
+        # Remove all, copy just in case
+        purl = copy.copy(self._purl)
+        for key, values in self._purl.query_params().items():
+            for value in values:
+                purl = purl.remove_query_param(key, value)
+        return Url(purl.as_string())
+
+    @property
+    def contains_www(self) -> bool:
+        return True if WWW.match(self.netloc) else False
+
     @property
     def value(self) -> str:
         return self._purl.as_string()
+
+    @property
+    def registered_domain(self) -> str:
+        return tldextract.extract(self.value).registered_domain
 
     @property
     def is_accessible(self, timeout = (1.0, 3.0)) -> bool:
@@ -48,3 +89,8 @@ class Url():
         except ValueError:
             return False
 
+
+def _mutate(url: Url, **kwargs) -> Url:
+    args = url._purl._tuple._asdict()
+    args.update(kwargs)
+    return Url(purl.URL(**args).as_string())
