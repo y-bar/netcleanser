@@ -5,7 +5,7 @@ The library makes parsing and manipulation of URL🌐 and Email address📧 easy
 [![ci](https://github.com/y-bar/netcleanser/actions/workflows/ci.yml/badge.svg)](https://github.com/y-bar/netcleanser/actions/workflows/ci.yml)
 [![license](https://img.shields.io/github/license/y-bar/netcleanser.svg)](https://github.com/y-bar/netcleanser/blob/master/LICENSE)
 [![release](https://img.shields.io/github/release/y-bar/netcleanser.svg)](https://github.com/y-bar/netcleanser/releases/latest)
-
+[![python-version](https://img.shields.io/badge/python-3.7+-blue.svg)]
 
 ## Install
 
