@@ -11,6 +11,8 @@ homepage = "https://github.com/y-bar/netcleanser"
 repository = "https://github.com/y-bar/netcleanser"
 license = "MIT"
 classifiers = [
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Topic :: Utilities",
 ]
