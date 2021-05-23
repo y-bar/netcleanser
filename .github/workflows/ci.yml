@@ -6,7 +6,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.9]
+        python-version: [3.9, 3.8, 3.7]
         os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
@@ -19,6 +19,8 @@ jobs:
           curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
       - name: Add path for Poetry
         run: echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+      - name: Remove poetry.lock for different environemnts in ci
+        run: rm poetry.lock
       - name: Install Dependencies
         run: poetry install --no-interaction
       - name: Run tests
