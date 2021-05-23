@@ -1,9 +1,9 @@
 import re
-from typing import Optional, Final
+from typing import Optional
 
 # Thanks!
 # https://gist.github.com/neu5ron/66078f804f16f9bda828
-DOMAIN_NAME_REGEX: Final[re.Pattern] = re.compile(r'(([\da-zA-Z])([_\w-]{,62})\.){,127}(([\da-zA-Z])[_\w-]{,61})?([\da-zA-Z]\.((xn\-\-[a-zA-Z\d]+)|([a-zA-Z\d]{2,})))', re.IGNORECASE)
+DOMAIN_NAME_REGEX: re.Pattern = re.compile(r'(([\da-zA-Z])([_\w-]{,62})\.){,127}(([\da-zA-Z])[_\w-]{,61})?([\da-zA-Z]\.((xn\-\-[a-zA-Z\d]+)|([a-zA-Z\d]{2,})))', re.IGNORECASE)
 
 def _looks_domain(x: str) -> bool:
     domain_name = x.lower().strip()

@@ -3,12 +3,12 @@ import purl
 import copy
 import requests
 import tldextract
-from typing import Optional, Final
+from typing import Optional
 
 # Regular expressions to remove "www.", "www1.", www123. etc."
-WWW: Final[re.Pattern] = re.compile(r"^www[0-9]*\.")
+WWW: re.Pattern = re.compile(r"^www[0-9]*\.")
 # scheme e.g.: hoge://
-SCHEME: Final[re.Pattern] = re.compile(r"^[A-Za-z0-9+.\-]+://")
+SCHEME: re.Pattern = re.compile(r"^[A-Za-z0-9+.\-]+://")
 
 class Url:
     def __init__(self, url_string: Optional[str] = None, host=None, username=None, password=None,scheme=None, port=None, path=None, query=None, fragment=None):
