@@ -34,6 +34,8 @@ def test_invalid_url():
 def test_invalid_url_2():
     url = Url.build('javascript:void(0)')
     assert url is None
+    url = Url.build('https://google.com/')
+    assert url == Url('https://google.com/')
 
 
 def test_remove_query():
