@@ -31,6 +31,11 @@ def test_invalid_url():
     assert url.contains_www == False
     assert url.add_www() == Url('https://www.goooooooooooogle.com')
 
+def test_invalid_url_2():
+    url = Url.build('javascript:void(0)')
+    assert url is None
+
+
 def test_remove_query():
     url_string = 'https://www.google.com/search'
     query_string = "p=testing&q=hoge&q=moge"
