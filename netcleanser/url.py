@@ -97,7 +97,7 @@ class Url:
         if value is None:
             return None
         try:
-            return Url(purl.URL(value))
+            return Url(value = value)
         except Exception as e:
             logger.warning(e) 
             return None
